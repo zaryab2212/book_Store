@@ -30,7 +30,6 @@
   { "src": "/book/on-sale/", "dest": "index.js" },
   { "src": "/book/(.*)/", "dest": "index.js" },
  
- 
      
        
         { "src": "/cart/add/", "dest":"index.js" },
@@ -41,9 +40,9 @@
          
         { "src": "/", "dest": "index.js" }, 
 
-        { "src": "/", "dest": "build/index.html" },
         { "src": "/collection/(.*)", "dest": "build/index.html" },
-        { "src": "/collection/(.+)", "dest": "build/$1" }
+        { "src": "/", "dest": "build/index.html" },
+        { "src": "/collection/(.+)", "dest": "build/$1" },
         { "src": "/(.+)", "dest": "build/$1" }
       ]
 
