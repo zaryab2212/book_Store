@@ -17,9 +17,7 @@ exports.addToCart = async (req, res, next) => {
     let bookExist = userCart.find(
       (crt) => crt.bookId.toString() === req.body.bookId.toString()
     );
-    console.log(bookExist);
     if (!bookExist) {
-      console.log("ye wala");
       const doc = await Cart.create({ ...req.body, userId: req.user });
       const result = await doc.save();
       const cart = await result.populate("bookId");
@@ -29,9 +27,7 @@ exports.addToCart = async (req, res, next) => {
         cart,
       });
     } else {
-      console.log("working");
       bookExist.Quantity += 1;
-      console.log(bookExist);
       const cart = await Cart.findByIdAndUpdate(bookExist._id, {
         bookId: bookExist.bookId,
         userId: req.user,

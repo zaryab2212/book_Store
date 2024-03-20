@@ -2,6 +2,7 @@ const NewError = require("../utils/newError");
 const jwt = require("jsonwebtoken");
 const bcrypt = require("bcrypt");
 const { User } = require("../Models/user");
+const { cloudinaryUploader } = require("../utils/cloudinary");
 exports.userLogin = async (req, res, next) => {
   const { email, password } = req.body;
   try {
@@ -39,6 +40,7 @@ exports.userLogin = async (req, res, next) => {
 
 exports.userRegister = async (req, res, next) => {
   const { email, password } = req.body;
+  const result = await cloudinaryUploader(req.files.image[0]);
   try {
     const user = await User.findOne({ email });
 
@@ -53,6 +55,7 @@ exports.userRegister = async (req, res, next) => {
     const newUser = await User.create({
       ...req.body,
       password: hashedPass,
+      image: result,
     });
     await newUser.save();
     res.status(201).json({
@@ -62,5 +65,32 @@ exports.userRegister = async (req, res, next) => {
     });
   } catch (error) {
     next(new NewError("something went wrong in loging in", 400, error));
+  }
+};
+exports.getUser = async (req, res, next) => {
+  try {
+    const user = await User.findById(req.user);
+
+    if (!user) {
+      return next(new NewError("user Not found Please Login", 400));
+    }
+
+    res.status(200).json({
+      status: true,
+      message: "user fetched in succesfully",
+      user,
+    });
+  } catch (error) {
+    next(new NewError("something went wrong getting user", 400, error));
+  }
+};
+exports.LogOutUser = async (req, res, next) => {
+  try {
+    res.status(200).cookie("token", "").json({
+      status: true,
+      message: "user fetched in succesfully",
+    });
+  } catch (error) {
+    next(new NewError("user logged out ", 400, error));
   }
 };

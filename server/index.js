@@ -9,6 +9,7 @@ const cartRoutes = require("./routes/cart");
 const globalErrors = require("./Middlwares/globalErrors");
 const cookieparser = require("cookie-parser");
 const { authorized } = require("./Middlwares/authorized");
+const path = require("path");
 const app = express();
 dotenv.config();
 
@@ -17,6 +18,7 @@ dotenv.config();
 app.use(cors());
 app.use(express.json());
 app.use(cookieparser());
+app.use(express.static(path.resolve(__dirname, "build")));
 
 // Routes
 

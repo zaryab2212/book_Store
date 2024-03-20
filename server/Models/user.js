@@ -13,12 +13,12 @@ const userSchema = mongoose.Schema({
     min: [6, "password should be minimun of 6 charactors"],
     trim: true,
   },
-  confirmPassword: {
-    type: String,
-    require: [true, "Confirm password is required"],
-    min: [6, "password should be minimun of 6 charactors"],
-    trim: true,
-  },
+  // confirmPassword: {
+  //   type: String,
+  //   require: [true, "Confirm password is required"],
+  //   min: [6, "password should be minimun of 6 charactors"],
+  //   trim: true,
+  // },
   name: {
     type: String,
     require: [true, "name is required"],

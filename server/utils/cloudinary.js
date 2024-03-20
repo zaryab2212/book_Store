@@ -17,17 +17,14 @@ exports.cloudinaryUploader = async (file) => {
       public_id: folderName + file.originalname.split(".")[0], // Use a unique identifier as part of the public_id
     };
 
-    // Await the upload operation to complete
     const result = await cloudinary.uploader.upload(
       `data:${file.mimetype};base64,${basefile}`,
       {
-        resource_type: "auto", // Let Cloudinary determine the resource type
+        resource_type: "auto",
       }
     );
-    return result.url; // Return the Cloudinary response
+    return result.url;
   } catch (error) {
-    // If you're inside an Express.js route handler, you should handle errors here
-    // Alternatively, you can throw the error and let Express's error-handling middleware deal with it
     throw new NewError("Image could not be uploaded on Cloudinary", 400, error);
   }
 };
