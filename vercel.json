@@ -1,0 +1,48 @@
+{
+    
+    "builds": [
+      {
+        "src": "index.js",
+        "use": "@vercel/node"
+      },
+      {
+        "src": "build/**",
+        "use": "@vercel/static"
+
+      }
+    
+    ],
+"routes": [
+   
+  { "src": "/auth/login", "dest": "index.js" },
+  { "src": "/auth/register", "dest": "index.js" },
+  { "src": "/auth/get", "dest": "index.js" },
+  { "src": "/auth/logout", "dest": "index.js" },
+  { "src": "/auth", "dest": "index.js" },
+    
+  { "src": "/book/auth/", "dest": "index.js" },
+  { "src": "/book/genre/", "dest": "index.js" },
+  { "src": "/book/add/", "dest": "index.js" },
+  { "src": "/book/best-collection/", "dest": "index.js" },
+  { "src": "/book/top-rated/", "dest": "index.js" },
+  { "src": "/book/best-selling/", "dest": "index.js" },
+  { "src": "/book/new-arrival/", "dest": "index.js" },
+  { "src": "/book/on-sale/", "dest": "index.js" },
+  { "src": "/book/(.*)/", "dest": "index.js" },
+ 
+ 
+     
+       
+        { "src": "/cart/add/", "dest":"index.js" },
+        { "src": "/cart/get/", "dest":"index.js" },
+        { "src": "/cart/(.*)", "dest":"index.js" },
+  
+
+         
+        { "src": "/", "dest": "index.js" }, 
+
+        { "src": "/", "dest": "build/index.html" },
+        { "src": "/(.+)", "dest": "build/$1" }
+      ]
+
+}

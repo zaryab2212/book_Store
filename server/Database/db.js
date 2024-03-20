@@ -2,7 +2,7 @@ const mongoose = require("mongoose");
 
 exports.conection = async () => {
   try {
-    await mongoose.connect("mongodb://127.0.0.1:27017/book_store");
+    await mongoose.connect(process.env.MONGO_URI);
     console.log("Data Base connected");
   } catch (error) {
     console.log("Db connection Error", error);
