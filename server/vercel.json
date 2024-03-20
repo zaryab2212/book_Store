@@ -28,7 +28,7 @@
   { "src": "/book/best-selling/", "dest": "index.js" },
   { "src": "/book/new-arrival/", "dest": "index.js" },
   { "src": "/book/on-sale/", "dest": "index.js" },
-  { "src": "/book/(.*)/", "dest": "index.js" },
+  { "src": "/book/(.*)", "dest": "index.js" },
  
      
        
