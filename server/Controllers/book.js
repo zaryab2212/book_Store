@@ -9,6 +9,7 @@ exports.addBook = async (req, res, next) => {
     if (req.role !== "admin" && req.role !== "seller") {
       return next(new NewError("This is not a Seller Account", 400));
     }
+    console.log(req.files);
     let bookObj = { userId: req.user };
     if (req.files.image) {
       const fileUrl = await cloudinaryUploader(req.files.image[0]);

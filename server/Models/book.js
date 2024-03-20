@@ -13,7 +13,7 @@ const bookSchema = new mongoose.Schema(
     Cat: {
       type: String,
       enum: ["NEW_ARRIVAL", "ON_SALE", "BEST_SELLING", "TOP_RATED"],
-      default: "NEW ARRIVAL",
+      default: "NEW_ARRIVAL",
     },
     rating: {
       type: Number,
@@ -51,7 +51,6 @@ const bookSchema = new mongoose.Schema(
     },
     image: {
       type: String,
-      required: true,
     },
     file: {
       type: String,

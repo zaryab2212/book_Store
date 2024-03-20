@@ -6,7 +6,6 @@ exports.authorized = async (req, res, next) => {
   if (!token) {
     return next(new NewError("Token not found", 400));
   }
-  console.log(token);
   const userData = jwt.verify(token, process.env.JWT_SEC);
   if (!userData) {
     return next(new NewError("Token is not valid try login again", 400));
